@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :organizations
   root to: 'user_sessions#new'
 
   resources :user_sessions, only: [:create]
