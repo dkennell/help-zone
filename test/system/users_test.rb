@@ -5,9 +5,15 @@ class UsersTest < ApplicationSystemTestCase
     @user = users(:one)
   end
 
-  test "visiting the index" do
+  test "index renders successfully" do
     visit users_url
     assert_selector "h1", text: "Users"
+  end
+
+  test "user index shows emails of all users" do
+    visit users_url
+    user = users(:one)
+    assert_text user.email
   end
 
   test "creating a User" do
