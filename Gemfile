@@ -32,6 +32,8 @@ gem 'jbuilder', '~> 2.5'
 
 # Use Sorcery for authentication
 gem 'sorcery'
+# Use Rolify for user roles
+gem "rolify"
 
 # Use ActiveStorage variant
 # gem 'mini_magick', '~> 4.8'
