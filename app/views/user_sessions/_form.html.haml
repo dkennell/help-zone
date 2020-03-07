@@ -1,0 +1,12 @@
+/# app/views/user_sessions/_form.html.erb
+= form_with url: user_sessions_path, method: :post do |f|
+  .field
+    = f.label :email
+    %br/
+    = f.text_field :email
+  .field
+    = f.label :password
+    %br/
+    = f.password_field :password
+  .actions
+    = f.submit "Login"
