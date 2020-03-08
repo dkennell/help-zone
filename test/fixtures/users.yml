@@ -6,6 +6,8 @@
 #
 one:
   email: 'davidkennell0@gmail.com'
+  salt: <%= salt = "asdasdastr4325234324sdfds" %>
+  crypted_password: <%= Sorcery::CryptoProviders::BCrypt.encrypt("password", salt) %>
 two:
   email: 'davidkennelll0@gmail.com'
 organization_admin_one:

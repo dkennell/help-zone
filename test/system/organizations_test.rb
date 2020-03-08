@@ -1,6 +1,9 @@
 require "application_system_test_case"
+require "system/system_test_helper"
 
 class OrganizationsTest < ApplicationSystemTestCase
+  include SystemTestHelper
+
   setup do
     @organization = organizations(:one)
   end
@@ -8,6 +11,17 @@ class OrganizationsTest < ApplicationSystemTestCase
   test "visiting the index" do
     visit organizations_url
     assert_selector "h1", text: "Organizations"
+  end
+
+  test "institution admins only see their own organizations" do
+    @second_organization = organizations(:two)
+    @user = users(:organization_admin_one)
+    @user.organizations <<  @organization
+    @user.password = "password"
+    @user.save
+    login_user_post(@user)
+    assert_text @organization.name
+    assert_no_text @second_organization.name
   end
 
   test "creating a Organization" do

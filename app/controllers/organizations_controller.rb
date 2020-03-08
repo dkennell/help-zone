@@ -4,7 +4,11 @@ class OrganizationsController < ApplicationController
   # GET /organizations
   # GET /organizations.json
   def index
-    @organizations = Organization.all
+    if current_user.has_role? :super_admin
+      @organizations = Organization.all
+    else
+      @organizations = current_user.organizations
+    end
   end
 
   # GET /organizations/1
@@ -69,6 +73,6 @@ class OrganizationsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def organization_params
-      params.fetch(:organization, {})
+      params.require(:organization).permit(:name)
     end
 end

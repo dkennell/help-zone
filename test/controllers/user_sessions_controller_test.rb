@@ -12,7 +12,7 @@ class UserSessionsControllerTest < ActionDispatch::IntegrationTest
       email: user.email,
       password: "password"
     }
-    assert_response :success
+    assert_redirected_to :organizations
   end
 
   test "destroy session" do

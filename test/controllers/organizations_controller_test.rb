@@ -1,11 +1,16 @@
 require 'test_helper'
+require "controllers/controller_test_helper"
 
 class OrganizationsControllerTest < ActionDispatch::IntegrationTest
+  include ControllerTestHelper
+
   setup do
     @organization = organizations(:one)
+    @user = users(:one)
   end
 
   test "should get index" do
+    login_user_post(@user)
     get organizations_url
     assert_response :success
   end
@@ -17,7 +22,8 @@ class OrganizationsControllerTest < ActionDispatch::IntegrationTest
 
   test "should create organization" do
     assert_difference('Organization.count') do
-      post organizations_url, params: { organization: {  } }
+      post organizations_url, params: {
+        organization: { name: "Newly minted organization" } }
     end
 
     assert_redirected_to organization_url(Organization.last)
@@ -34,7 +40,8 @@ class OrganizationsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update organization" do
-    patch organization_url(@organization), params: { organization: {  } }
+    patch organization_url(@organization), params: { organization: {
+      name: "Updated organization" } }
     assert_redirected_to organization_url(@organization)
   end
 

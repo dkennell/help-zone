@@ -5,6 +5,7 @@ class User < ApplicationRecord
   has_and_belongs_to_many :organizations
 
   validates :email, presence: true
+  validates :crypted_password, presence: true
 
   after_create :assign_default_role
 
