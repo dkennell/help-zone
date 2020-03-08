@@ -7,4 +7,9 @@ class OrganizationTest < ActiveSupport::TestCase
     organization.users << user
     assert !organization.users.empty?
   end
+
+  test "is invalid without a name" do
+    organization = Organization.new
+    assert !organization.valid?
+  end
 end
