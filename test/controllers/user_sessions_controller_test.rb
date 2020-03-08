@@ -17,7 +17,7 @@ class UserSessionsControllerTest < ActionDispatch::IntegrationTest
 
   test "destroy session" do
     post '/logout'
-    assert_response :redirect
+    assert_redirected_to 'login'
   end
 
 end
