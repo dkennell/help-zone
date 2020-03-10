@@ -8,8 +8,6 @@
       %thead
         %tr
           %th Name
-          <
-          %svg.bi.bi-chevron-right {width: "32" height="32"}
           %th Role
           %th Tickets
           %th Edit
@@ -19,9 +17,14 @@
         - @organizations.each do |organization|
           %tr
             %td= link_to organization.name, organization, class: "text-secondary"
-            %td= 'Edit'
-            %td= 0
-            %td= link_to 'Edit', edit_organization_path(organization)
-            %td= link_to 'Destroy', organization, method: :delete, data: { confirm: 'Are you sure?' }
-
+            %td.text-center= 'Edit'
+            %td.text-center= 0
+            %td.text-center= link_to fa_icon('edit'),
+              edit_organization_path(organization),
+              class: 'text-dark'
+            %td.text-center= link_to fa_icon('trash'),
+              organization,
+              method: :delete,
+              class: 'text-danger',
+              data: { confirm: 'Are you sure?' }
     %br
