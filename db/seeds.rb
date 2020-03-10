@@ -48,6 +48,8 @@ organizations = Organization.create(
 user1, user2, user3 = users
 org1, org2, org3 = organizations
 
+user1.add_role(:super_admin)
+
 user2.organizations << org1
 user2.add_role(:organization_admin, org1)
 

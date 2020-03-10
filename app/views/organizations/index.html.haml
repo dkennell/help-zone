@@ -1,20 +1,27 @@
-%h1 Listing organizations
+.container.d-flex.justify-content-center
+  %h3.mb-4.text-info Your organizations
+.container.d-flex.justify-content-center
+  .card.w-50.p-3.text-left
+    = link_to '+ New organization', new_organization_path, { class: 'p-3'}
 
-%table
-  %thead
-    %tr
-      %th
-      %th
-      %th
+    %table.table.text-left
+      %thead
+        %tr
+          %th Name
+          <
+          %svg.bi.bi-chevron-right {width: "32" height="32"}
+          %th Role
+          %th Tickets
+          %th Edit
+          %th Destroy
 
-  %tbody
-    - @organizations.each do |organization|
-      %tr
-        %td= organization.name
-        %td= link_to 'Show', organization
-        %td= link_to 'Edit', edit_organization_path(organization)
-        %td= link_to 'Destroy', organization, method: :delete, data: { confirm: 'Are you sure?' }
+      %tbody
+        - @organizations.each do |organization|
+          %tr
+            %td= link_to organization.name, organization, class: "text-secondary"
+            %td= 'Edit'
+            %td= 0
+            %td= link_to 'Edit', edit_organization_path(organization)
+            %td= link_to 'Destroy', organization, method: :delete, data: { confirm: 'Are you sure?' }
 
-%br
-
-= link_to 'New Organization', new_organization_path
+    %br
