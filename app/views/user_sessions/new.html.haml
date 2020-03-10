@@ -1,5 +1,8 @@
-%h1 Login
+.container.d-flex.align-items-center.justify-content-center.vh-100
+  .card.w-25
+    .align-items-center.p-3
+      %h3.text-center.text-info Help Zone
+      %h5.text-center Login
 
-= render 'form' 
-
-= link_to 'Back', user_sessions_path 
+      = render 'form'
+      = link_to "Register", new_user_path, class: "text-secondary"
