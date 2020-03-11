@@ -6,20 +6,20 @@ class OrganizationsTest < ApplicationSystemTestCase
 
   setup do
     @organization = organizations(:one)
-  end
-
-  test "visiting the index" do
-    visit organizations_url
-    assert_selector "h1", text: "Organizations"
-  end
-
-  test "institution admins only see their own organizations" do
-    @second_organization = organizations(:two)
     @user = users(:organization_admin_one)
     @user.organizations <<  @organization
     @user.password = "password"
     @user.save
     login_user_post(@user)
+  end
+
+  test "visiting the index" do
+    visit organizations_url
+    assert_selector "h3", text: "Your organizations"
+  end
+
+  test "institution admins only see their own organizations" do
+    @second_organization = organizations(:two)
     assert_text @organization.name
     assert_no_text @second_organization.name
   end
