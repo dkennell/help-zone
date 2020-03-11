@@ -1,6 +1,9 @@
 require "application_system_test_case"
+require "system/system_test_helper"
 
 class UserSessionsTest < ApplicationSystemTestCase
+  include SystemTestHelper
+
   setup do
     @user = users(:one)
   end
@@ -12,9 +15,7 @@ class UserSessionsTest < ApplicationSystemTestCase
 
   test "log in" do
     visit "/"
-    fill_in "email", with: "davidkennell0@gmail.com"
-    fill_in "password", with: "password"
-    click_on "Login"
-    assert_text "Listing users"
+    login_user_post(@user)
+    assert_text "Your organizations"
   end
 end
