@@ -10,5 +10,9 @@ one:
   crypted_password: <%= Sorcery::CryptoProviders::BCrypt.encrypt("password", salt) %>
 two:
   email: 'davidkennelll0@gmail.com'
+  salt: <%= salt = "asdasdastr4325234324sdfds" %>
+  crypted_password: <%= Sorcery::CryptoProviders::BCrypt.encrypt("password", salt) %>
 organization_admin_one:
   email: 'org_admin_1@gmail.com'
+  salt: <%= salt = "asdasdastr4325234324sdfds" %>
+  crypted_password: <%= Sorcery::CryptoProviders::BCrypt.encrypt("password", salt) %>
