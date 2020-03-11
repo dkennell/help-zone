@@ -35,6 +35,15 @@ class OrganizationsTest < ApplicationSystemTestCase
     click_on "Back"
   end
 
+  test "user gets associated with an organization after creating that organization" do
+    visit organizations_url
+    click_on "+ New organization"
+    fill_in 'organization_name', with: "My new organization"
+    click_on "Save organization"
+    visit organizations_url
+    assert_text "My new organization"
+  end
+
   test "updating a Organization" do
     visit organizations_url
     find('[data-behavior="edit"]').click

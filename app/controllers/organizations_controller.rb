@@ -33,6 +33,10 @@ class OrganizationsController < ApplicationController
 
     respond_to do |format|
       if @organization.save
+        if !current_user.has_role?(:super_admin)
+          current_user.organizations << @organization
+          current_user.add_role(:organization_admin, @organization)
+        end
         format.html { redirect_to @organization, notice: 'Organization was successfully created.' }
         format.json { render :show, status: :created, location: @organization }
       else
