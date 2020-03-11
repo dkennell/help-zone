@@ -29,7 +29,7 @@ class OrganizationsTest < ApplicationSystemTestCase
     visit organizations_url
     click_on "+ New organization"
     fill_in 'organization_name', with: "My new organization"
-    click_on "Create organization"
+    click_on "Save organization"
 
     assert_text "Organization was successfully created"
     click_on "Back"
@@ -37,9 +37,9 @@ class OrganizationsTest < ApplicationSystemTestCase
 
   test "updating a Organization" do
     visit organizations_url
-    click_on "Edit", match: :first
+    find('[data-behavior="edit"]').click
 
-    click_on "Update Organization"
+    click_on "Save organization"
 
     assert_text "Organization was successfully updated"
     click_on "Back"

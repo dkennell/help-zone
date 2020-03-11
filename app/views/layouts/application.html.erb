@@ -11,7 +11,7 @@
 
   <body class="bg-light">
     <% if current_user %>
-      <%= link_to "Edit Profile", edit_user_path(current_user.id) %>
+      <%= link_to "User settings", edit_user_path(current_user.id) %>
       <%= link_to "Logout", :logout, method: :post %>
     <% end %>
     <% flash.each do |type, msg| %>
