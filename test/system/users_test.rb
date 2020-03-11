@@ -7,7 +7,7 @@ class UsersTest < ApplicationSystemTestCase
 
   test "index renders successfully" do
     visit users_url
-    assert_selector "h1", text: "Users"
+    assert_selector "h1", text: "Listing users"
   end
 
   test "user index shows emails of all users" do
@@ -19,8 +19,10 @@ class UsersTest < ApplicationSystemTestCase
   test "creating a User" do
     visit users_url
     click_on "New User"
+    fill_in 'user_email', with: "bloop@gmail.com"
+    fill_in 'user_password', with: "password"
 
-    click_on "Create User"
+    click_on "Save"
 
     assert_text "User was successfully created"
     click_on "Back"
@@ -30,7 +32,7 @@ class UsersTest < ApplicationSystemTestCase
     visit users_url
     click_on "Edit", match: :first
 
-    click_on "Update User"
+    click_on "Save"
 
     assert_text "User was successfully updated"
     click_on "Back"
