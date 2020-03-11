@@ -14,6 +14,13 @@
       <%= link_to "Edit Profile", edit_user_path(current_user.id) %>
       <%= link_to "Logout", :logout, method: :post %>
     <% end %>
+    <% flash.each do |type, msg| %>
+      <% if type == "alert" %>
+        <div class="alert alert-danger"><%= msg %></div>
+      <% else %>
+        <div class="alert alert-info"><%= msg %></div>
+      <% end %>
+    <% end %>
     <%= yield %>
   </body>
 </html>

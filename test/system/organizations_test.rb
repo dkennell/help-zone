@@ -48,7 +48,7 @@ class OrganizationsTest < ApplicationSystemTestCase
   test "destroying a Organization" do
     visit organizations_url
     page.accept_confirm do
-      click_on "Destroy", match: :first
+      find('[data-behavior="destroy"]').click
     end
 
     assert_text "Organization was successfully destroyed"

@@ -21,10 +21,12 @@
             %td.text-center= 0
             %td.text-center= link_to fa_icon('edit'),
               edit_organization_path(organization),
-              class: 'text-dark'
+              class: 'text-dark',
+              data: { behavior: 'edit' }
             %td.text-center= link_to fa_icon('trash'),
               organization,
               method: :delete,
               class: 'text-danger',
-              data: { confirm: 'Are you sure?' }
+              data: { behavior: 'destroy',
+                      confirm: 'Are you sure?' }
     %br
