@@ -8,9 +8,10 @@ class OrganizationsTest < ApplicationSystemTestCase
     @organization = organizations(:one)
     @user = users(:organization_admin_one)
     @user.organizations <<  @organization
-    @user.password = "password"
-    @user.save
     login_user_post(@user)
+    # Wait for Organizations page to load before proceeding to individual
+    # tests. This prevents failures from race conditions in Capybara.
+    find_by_id("page-heading")
   end
 
   test "visiting the index" do
@@ -26,9 +27,9 @@ class OrganizationsTest < ApplicationSystemTestCase
 
   test "creating a Organization" do
     visit organizations_url
-    click_on "New Organization"
-
-    click_on "Create Organization"
+    click_on "+ New organization"
+    fill_in 'organization_name', with: "My new organization"
+    click_on "Create organization"
 
     assert_text "Organization was successfully created"
     click_on "Back"
