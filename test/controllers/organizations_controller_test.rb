@@ -7,6 +7,7 @@ class OrganizationsControllerTest < ActionDispatch::IntegrationTest
   setup do
     @organization = organizations(:one)
     @user = users(:one)
+    login_user_post(@user)
   end
 
   test "should get index" do
