@@ -1,5 +1,5 @@
 /# app/views/user_sessions/_form.html.erb
-= form_with url: user_sessions_path, method: :post, class: 'form-group' do |f|
+= form_with url: user_sessions_path, method: :post, class: 'form-group', local: true do |f|
   .field
     = f.label :email
     %br/

@@ -18,4 +18,11 @@ class UserSessionsTest < ApplicationSystemTestCase
     login_user_post(@user)
     assert_text "Your organizations"
   end
+
+  test "incorrect login fails" do
+    @user.email = "Bloop"
+    visit "/"
+    login_user_post(@user)
+    assert_text "Username or password is incorrect"
+  end
 end

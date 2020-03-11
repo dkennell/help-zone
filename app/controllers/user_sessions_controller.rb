@@ -8,7 +8,7 @@ class UserSessionsController < ApplicationController
     if @user
       redirect_to(:organizations, notice: 'Login successful')
     else
-      flash.now[:alert] = 'Login failed'
+      flash.now[:alert] = 'Username or password is incorrect'
       render action: 'new'
     end
   end
