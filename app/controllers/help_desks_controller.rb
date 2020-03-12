@@ -5,7 +5,8 @@ class HelpDesksController < ApplicationController
   # GET /help_desks
   # GET /help_desks.json
   def index
-    @help_desks = HelpDesk.all
+    @organization = Organization.find(params[:organization_id])
+    @help_desks = HelpDesk.where(organization_id: @organization.id )
   end
 
   # GET /help_desks/1
@@ -17,21 +18,20 @@ class HelpDesksController < ApplicationController
   def new
     @help_desk = HelpDesk.new
     @organization = Organization.find(params[:organization_id])
+    @help_desk.organization_id = @organization.id
   end
 
   # GET /help_desks/1/edit
   def edit
-    @organization = Organization.find(params[:organization_id])
   end
 
   # POST /help_desks
   # POST /help_desks.json
   def create
     @help_desk = HelpDesk.new(help_desk_params)
-
     respond_to do |format|
       if @help_desk.save
-        format.html { redirect_to organization_help_desk_url(@help_desk.organization, @help_desk), notice: 'Help desk was successfully created.' }
+        format.html { redirect_to help_desk_url(@help_desk), notice: 'Help desk was successfully created.' }
         format.json { render :show, status: :created, location: @help_desk }
       else
         format.html { render :new }
@@ -45,7 +45,7 @@ class HelpDesksController < ApplicationController
   def update
     respond_to do |format|
       if @help_desk.update(help_desk_params)
-        format.html { redirect_to organization_help_desk_url(@help_desk.organization, @help_desk), notice: 'Help desk was successfully updated.' }
+        format.html { redirect_to help_desk_url(@help_desk), notice: 'Help desk was successfully updated.' }
         format.json { render :show, status: :ok, location: @help_desk }
       else
         format.html { render :edit }

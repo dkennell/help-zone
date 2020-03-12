@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
+  resources :help_desks
   resources :organizations do
-    resources :help_desks
+    resources :help_desks, shallow: true
   end
   root to: 'user_sessions#new'
 

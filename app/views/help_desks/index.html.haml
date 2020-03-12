@@ -1,4 +1,4 @@
-%h1 Listing help_desks
+%h1 Help Desks for #{@organization.name}
 
 %table
   %thead
@@ -13,11 +13,10 @@
     - @help_desks.each do |help_desk|
       %tr
         %td= help_desk.name
-        %td= help_desk.organization
-        %td= link_to 'Show', organization_help_desk_path(help_desk.organization_id, help_desk.id)
-        %td= link_to 'Edit', edit_organization_help_desk_path(help_desk.organization_id, help_desk.id)
-        %td= link_to 'Destroy', organization_help_desk_path(help_desk.organization_id, help_desk.id), method: :delete, data: { confirm: 'Are you sure?' }
+        %td= link_to 'Show', help_desk_path(help_desk.id)
+        %td= link_to 'Edit', edit_help_desk_path(help_desk.id)
+        %td= link_to 'Destroy', help_desk_path(help_desk.id), method: :delete, data: { confirm: 'Are you sure?' }
 
 %br
 
-= link_to 'New Help desk', new_organization_help_desk_path
+= link_to 'New Help Desk', new_organization_help_desk_path(@organization)
