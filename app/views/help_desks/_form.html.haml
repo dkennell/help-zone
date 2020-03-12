@@ -1,0 +1,16 @@
+= form_for @help_desk, url: new_organization_help_desk_path(@organization) do |f|
+  - if @help_desk.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@help_desk.errors.count, "error")} prohibited this help_desk from being saved:"
+      %ul
+        - @help_desk.errors.full_messages.each do |message|
+          %li= message
+
+  .field
+    = f.label :name
+    = f.text_area :name
+  .field
+    = f.label :organization
+    = f.text_field :organization
+  .actions
+    = f.submit 'Save'

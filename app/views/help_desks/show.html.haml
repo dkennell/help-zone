@@ -1,0 +1,12 @@
+%p#notice= notice
+
+%p
+  %b Name:
+  = @help_desk.name
+%p
+  %b Organization:
+  = @help_desk.organization
+
+= link_to 'Edit', edit_organization_help_desk_path(@help_desk.organization, @help_desk)
+\|
+= link_to 'Back', organization_help_desks_path(@help_desk.organization)

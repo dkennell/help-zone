@@ -10,7 +10,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_03_07_202510) do
+ActiveRecord::Schema.define(version: 2020_03_12_010206) do
+
+  create_table "help_desks", force: :cascade do |t|
+    t.text "name"
+    t.integer "organization_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["organization_id"], name: "index_help_desks_on_organization_id"
+  end
 
   create_table "organizations", force: :cascade do |t|
     t.datetime "created_at", null: false

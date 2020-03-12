@@ -1,0 +1,7 @@
+%h1 Editing help_desk
+
+= render 'form'
+
+= link_to 'Show', organization_help_desk_path(@organization, @help_desk)
+\|
+= link_to 'Back', organization_help_desks_path(@organization)
