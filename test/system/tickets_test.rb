@@ -17,6 +17,7 @@ class TicketsTest < ApplicationSystemTestCase
 
     fill_in "Body", with: @ticket.body
     fill_in "Title", with: @ticket.title
+    fill_in "Email", with: "customer_email@gmail.com"
     click_on "Save"
 
     assert_text "Ticket was successfully created"

@@ -6,6 +6,9 @@
         - @ticket.errors.full_messages.each do |message|
           %li= message
 
+  .email
+    = f.label :email
+    = f.text_field :email
   .field
     = f.label :title
     = f.text_field :title
