@@ -1,11 +1,13 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
+  email: happod@gmail.com
   title: The first ticket
   body: Such and such
   help_desk: one
 
 two:
+  email: bloop@hotmail.org
   title: The second ticket
   body: This and that
   help_desk: two
