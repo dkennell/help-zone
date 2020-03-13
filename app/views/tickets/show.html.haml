@@ -1,0 +1,15 @@
+%p#notice= notice
+
+%p
+  %b Title:
+  = @ticket.title
+%p
+  %b Body:
+  = @ticket.body
+%p
+  %b Help desk:
+  = @ticket.help_desk
+
+= link_to 'Edit', edit_ticket_path(@ticket)
+\|
+= link_to 'Back', help_desk_tickets_path(@ticket.help_desk)

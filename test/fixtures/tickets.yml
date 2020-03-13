@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  title: The first ticket
+  body: Such and such
+  help_desk: one
+
+two:
+  title: The second ticket
+  body: This and that
+  help_desk: two
