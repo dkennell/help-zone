@@ -1,25 +1,29 @@
-%h1 Listing tickets
+.container.d-flex.justify-content-center
+  %h3.mb-4.text-info#page-heading Tickets for help desk: #{@help_desk.name}
+.container.d-flex.justify-content-center
+  .card.w-50.p-3.text-left
+    = link_to '+ New Ticket', new_help_desk_ticket_path(@help_desk)
+    %br
 
-%table
-  %thead
-    %tr
-      %th Title
-      %th Body
-      %th Help desk
-      %th
-      %th
-      %th
+    %table.table.text-left
+      %thead
+        %th Ticket Title
+        %th.text-center Edit
+        %th.text-center Delete
 
-  %tbody
-    - @tickets.each do |ticket|
-      %tr
-        %td= ticket.title
-        %td= ticket.body
-        %td= ticket.help_desk
-        %td= link_to 'Show', ticket
-        %td= link_to 'Edit', edit_ticket_path(ticket)
-        %td= link_to 'Destroy', ticket, method: :delete, data: { confirm: 'Are you sure?' }
+      %tbody
+        - @tickets.each do |ticket|
+          %tr
+            %td= link_to ticket.title, ticket, class: "text-secondary"
+            %td.text-center= link_to fa_icon('edit'),
+              edit_ticket_path(ticket),
+              class: 'text-dark',
+              data: { behavior: 'edit' }
+            %td.text-center= link_to fa_icon('trash'),
+              ticket,
+              method: :delete,
+              class: 'text-danger',
+              data: { behavior: 'destroy',
+                      confirm: 'Are you sure?' }
 
-%br
-
-= link_to 'New Ticket', new_help_desk_ticket_path(@help_desk)
+    %br

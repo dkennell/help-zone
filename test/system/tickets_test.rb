@@ -8,7 +8,7 @@ class TicketsTest < ApplicationSystemTestCase
 
   test "visiting the Ticket index for a given HelpDesk" do
     visit help_desk_tickets_url(@help_desk)
-    assert_selector "h1", text: "Listing tickets"
+    assert_selector "h3", text: "Tickets for help desk: #{@help_desk.name}"
   end
 
   test "creating a Ticket for a HelpDesk" do
@@ -25,7 +25,7 @@ class TicketsTest < ApplicationSystemTestCase
 
   test "updating a Ticket" do
     visit help_desk_tickets_url(@help_desk)
-    click_on "Edit", match: :first
+    first('[data-behavior="edit"]').click
 
     fill_in "Body", with: @ticket.body
     fill_in "Title", with: @ticket.title
@@ -38,7 +38,7 @@ class TicketsTest < ApplicationSystemTestCase
   test "destroying a Ticket" do
     visit help_desk_tickets_url(@help_desk)
     page.accept_confirm do
-      click_on "Destroy", match: :first
+      first('[data-behavior="destroy"]').click
     end
 
     assert_text "Ticket was successfully destroyed"
