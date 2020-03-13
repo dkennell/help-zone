@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_03_13_150613) do
+ActiveRecord::Schema.define(version: 2020_03_13_183959) do
 
   create_table "help_desks", force: :cascade do |t|
     t.text "name"
@@ -48,6 +48,7 @@ ActiveRecord::Schema.define(version: 2020_03_13_150613) do
     t.integer "help_desk_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "email"
     t.index ["help_desk_id"], name: "index_tickets_on_help_desk_id"
   end
 
