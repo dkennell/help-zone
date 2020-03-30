@@ -2,6 +2,7 @@
   .card.w-50
     .align-items-center.p-3
       %h3.text-center.text-info HelpZone
+      .text-center=image_tag("help-zone-logo.png", width: "100", height: "100", class: "mr-1", href: "/")
       %h5.text-center Login
 
       = render 'form'

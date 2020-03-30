@@ -18,8 +18,13 @@
       <% end %>
     <% end %>
     <% if current_user %>
-      <nav class="navbar navbar-light bg-info">
-        <a class="navbar-brand" href="/">HelpZone</a>
+      <nav class="navbar navbar-light bg-info pt-1 pb-1">
+        <div>
+          <a href="/" class="text-white text-decoration-none">
+            <%= image_tag("help-zone-logo.png", width: "50", height: "50", class: "mr-1", href: "/") %>
+            HelpZone
+          </a>
+        </div>
         <%= link_to "User settings", edit_user_path(current_user.id), class: "text-light" %>
         <%= link_to "Logout", :logout, method: :post, class: "text-light"  %>
       </nav>
