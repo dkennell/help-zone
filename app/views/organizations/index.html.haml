@@ -16,7 +16,7 @@
       %tbody
         - @organizations.each do |organization|
           %tr
-            %td= link_to organization.name, organization, class: "text-secondary"
+            %td= link_to organization.name, organization_help_desks_path(organization), class: "text-secondary"
             %td.text-center= 'Edit'
             %td.text-center= 0
             %td.text-center= link_to fa_icon('edit'),
