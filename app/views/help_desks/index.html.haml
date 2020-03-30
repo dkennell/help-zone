@@ -1,22 +1,27 @@
-%h1 Help Desks for #{@organization.name}
+.container.d-flex.justify-content-center
+  %h3.mb-4.text-info#page-heading Help desks for: #{@organization.name}
+.container.d-flex.justify-content-center
+  .card.w-50.p-3.text-left
+    = link_to '+ New Help Desk', new_organization_help_desk_path(@organization), { class: 'p-3'}
+    %table.table.text-left
+      %thead
+        %tr
+          %th Name
+          %th.text-center Edit
+          %th.text-center Destroy
 
-%table
-  %thead
-    %tr
-      %th Name
-      %th Organization
-      %th
-      %th
-      %th
-
-  %tbody
-    - @help_desks.each do |help_desk|
-      %tr
-        %td= help_desk.name
-        %td= link_to 'Show', help_desk_path(help_desk.id)
-        %td= link_to 'Edit', edit_help_desk_path(help_desk.id)
-        %td= link_to 'Destroy', help_desk_path(help_desk.id), method: :delete, data: { confirm: 'Are you sure?' }
-
-%br
-
-= link_to 'New Help Desk', new_organization_help_desk_path(@organization)
+      %tbody
+        - @help_desks.each do |help_desk|
+          %tr
+            %td= link_to help_desk.name, help_desk_path(help_desk.id), class: "text-secondary"
+            %td.text-center= link_to fa_icon('edit'),
+              edit_help_desk_path(help_desk.id),
+              class: 'text-dark',
+              data: { behavior: 'edit' }
+            %td.text-center= link_to fa_icon('trash'),
+              help_desk_path(help_desk.id),
+              method: :delete,
+              class: 'text-danger',
+              data: { behavior: 'destroy',
+                      confirm: 'Are you sure?' }
+    %br

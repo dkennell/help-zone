@@ -13,12 +13,12 @@ class HelpDesksTest < ApplicationSystemTestCase
 
   test "visiting the index" do
     visit organization_help_desks_url(@organization)
-    assert_selector "h1", text: "Help Desks for #{@organization.name}"
+    assert_selector "h3", text: "Help desks for: #{@organization.name}"
   end
 
   test "creating a Help desk" do
     visit organization_help_desks_url(@organization)
-    click_on "New Help Desk"
+    click_on "+ New Help Desk"
     fill_in "help_desk_name", with: @help_desk.name, id: "help_desk_name"
     click_on "Save"
 
@@ -28,7 +28,7 @@ class HelpDesksTest < ApplicationSystemTestCase
 
   test "updating a Help desk" do
     visit organization_help_desks_url(@organization)
-    click_on "Edit", match: :first
+    find('[data-behavior="edit"]').click
 
     fill_in "help_desk_name", with: @help_desk.name
     click_on "Save"
@@ -40,7 +40,7 @@ class HelpDesksTest < ApplicationSystemTestCase
   test "destroying a Help desk" do
     visit organization_help_desks_url(@organization)
     page.accept_confirm do
-      click_on "Destroy", match: :first
+      find('[data-behavior="destroy"]').click
     end
 
     assert_text "Help desk was successfully destroyed"
