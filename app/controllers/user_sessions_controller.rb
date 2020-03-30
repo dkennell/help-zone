@@ -1,5 +1,8 @@
 class UserSessionsController < ApplicationController
   def new
+    if logged_in?
+      redirect_to organizations_path
+    end
   end
 
   def create
