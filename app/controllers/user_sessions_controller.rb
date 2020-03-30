@@ -9,7 +9,7 @@ class UserSessionsController < ApplicationController
     @user = login(params[:email], params[:password])
 
     if @user
-      redirect_to(:organizations, notice: 'Login successful')
+      redirect_to(:organizations)
     else
       flash.now[:alert] = 'Username or password is incorrect'
       render action: 'new'
@@ -18,6 +18,6 @@ class UserSessionsController < ApplicationController
 
   def destroy
     logout
-    redirect_to('/login', notice: 'Logged out!')
+    redirect_to('/login')
   end
 end
