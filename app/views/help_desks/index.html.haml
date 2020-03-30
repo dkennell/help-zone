@@ -13,7 +13,7 @@
       %tbody
         - @help_desks.each do |help_desk|
           %tr
-            %td= link_to help_desk.name, help_desk_path(help_desk.id), class: "text-secondary"
+            %td= link_to help_desk.name, help_desk_tickets_path(help_desk.id), class: "text-secondary"
             %td.text-center= link_to fa_icon('edit'),
               edit_help_desk_path(help_desk.id),
               class: 'text-dark',
