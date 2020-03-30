@@ -12,15 +12,20 @@
   <body class="bg-light">
     <% flash.each do |type, msg| %>
       <% if type == "alert" %>
-        <div class="alert alert-danger"><%= msg %></div>
+        <div class="alert alert-danger mb-0"><%= msg %></div>
       <% else %>
-        <div class="alert alert-info"><%= msg %></div>
+        <div class="alert alert-info mb-0"><%= msg %></div>
       <% end %>
     <% end %>
     <% if current_user %>
-      <%= link_to "User settings", edit_user_path(current_user.id) %>
-      <%= link_to "Logout", :logout, method: :post %>
+      <nav class="navbar navbar-light bg-info">
+        <a class="navbar-brand" href="/">HelpZone</a>
+        <%= link_to "User settings", edit_user_path(current_user.id), class: "text-light" %>
+        <%= link_to "Logout", :logout, method: :post, class: "text-light"  %>
+      </nav>
     <% end %>
-    <%= yield %>
+    <div class="mt-5">
+      <%= yield %>
+    </div>
   </body>
 </html>
