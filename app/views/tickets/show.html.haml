@@ -13,3 +13,21 @@
 = link_to 'Edit', edit_ticket_path(@ticket)
 \|
 = link_to 'Back', help_desk_tickets_path(@ticket.help_desk)
+
+%br
+%br
+%br
+
+%h3 Comments
+-@ticket.comments.each do |comment|
+  %p="Comment by #{comment.author} at #{comment.created_at} : #{comment.body}"
+%p ...
+%p ...
+%h5 Add Comment
+%p="(Posting as: #{current_user.email})"
+=form_for @comment do |f|
+  =f.text_area :body
+  =f.hidden_field :ticket_id
+  =f.hidden_field :author, value: current_user.email
+  %br
+  =f.submit

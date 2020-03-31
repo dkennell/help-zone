@@ -1,6 +1,9 @@
 require "application_system_test_case"
+require "system/system_test_helper"
 
 class TicketsTest < ApplicationSystemTestCase
+  include SystemTestHelper
+
   setup do
     @ticket = tickets(:one)
     @help_desk = help_desks(:one)
@@ -43,5 +46,14 @@ class TicketsTest < ApplicationSystemTestCase
     end
 
     assert_text "Ticket was successfully destroyed"
+  end
+
+  test "commenting on a Ticket" do
+    user = users(:one)
+    login_user_post(user)
+    visit ticket_url(@ticket)
+    fill_in "comment_body", with: "This is a comment"
+    click_on "Create Comment"
+    assert_text "Comment by #{user.email}"
   end
 end
