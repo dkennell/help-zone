@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   resources :help_desks do
     resources :tickets, shallow: true
   end
+  resources :comments, only: [:create]
   resources :organizations do
     resources :help_desks, shallow: true
   end
