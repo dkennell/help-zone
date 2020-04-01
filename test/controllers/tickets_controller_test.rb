@@ -1,6 +1,9 @@
 require 'test_helper'
+require "controllers/controller_test_helper"
 
 class TicketsControllerTest < ActionDispatch::IntegrationTest
+  include ControllerTestHelper
+
   setup do
     @ticket = tickets(:one)
     @help_desk = help_desks(:one)
@@ -25,6 +28,8 @@ class TicketsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should show ticket" do
+    @user = users(:one)
+    login_user_post(@user)
     get ticket_url(@ticket)
     assert_response :success
   end

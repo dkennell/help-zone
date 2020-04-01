@@ -7,6 +7,7 @@ class TicketsTest < ApplicationSystemTestCase
   setup do
     @ticket = tickets(:one)
     @help_desk = help_desks(:one)
+    @user = users(:one)
   end
 
   test "visiting the Ticket index for a given HelpDesk" do
@@ -15,6 +16,7 @@ class TicketsTest < ApplicationSystemTestCase
   end
 
   test "creating a Ticket for a HelpDesk" do
+    login_user_post(@user)
     visit help_desk_tickets_url(@help_desk)
     click_on "New Ticket"
 
@@ -28,6 +30,7 @@ class TicketsTest < ApplicationSystemTestCase
   end
 
   test "updating a Ticket" do
+    login_user_post(@user)
     visit help_desk_tickets_url(@help_desk)
     first('[data-behavior="edit"]').click
 
@@ -49,11 +52,10 @@ class TicketsTest < ApplicationSystemTestCase
   end
 
   test "commenting on a Ticket" do
-    user = users(:one)
-    login_user_post(user)
+    login_user_post(@user)
     visit ticket_url(@ticket)
     fill_in "comment_body", with: "This is a comment"
     click_on "Create Comment"
-    assert_text "Comment by #{user.email}"
+    assert_text "Comment by #{@user.email}"
   end
 end

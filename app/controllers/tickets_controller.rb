@@ -11,7 +11,8 @@ class TicketsController < ApplicationController
   # GET /tickets/1
   # GET /tickets/1.json
   def show
-    @comment = Comment.new(ticket_id: params[:id])
+    @ticket = Ticket.find(params[:id])
+    @comment = Comment.new(ticket_id: @ticket.id)
   end
 
   # GET /tickets/new
@@ -23,6 +24,7 @@ class TicketsController < ApplicationController
 
   # GET /tickets/1/edit
   def edit
+    @ticket = Ticket.find(params[:id])
   end
 
   # POST /tickets
