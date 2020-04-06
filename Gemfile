@@ -40,6 +40,9 @@ gem 'sorcery'
 # Use Rolify for user roles
 gem "rolify"
 
+# Use Sendgrid as our email provider
+gem 'sendgrid-ruby'
+
 # Use ActiveStorage variant
 # gem 'mini_magick', '~> 4.8'
 
