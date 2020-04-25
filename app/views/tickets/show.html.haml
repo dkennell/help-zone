@@ -1,33 +1,46 @@
 %p#notice= notice
+.container.justify-content-center
+  .card.w-75.mx-auto.p-3.text-left
+    %p
+      %b Ticket ID:
+      = @ticket.id
 
-%p
-  %b Title:
-  = @ticket.title
-%p
-  %b Body:
-  = @ticket.body
-%p
-  %b Help desk:
-  = @ticket.help_desk
+    %h1
+      = @ticket.title
+    %p
+      %b Created at:
+      = @ticket.created_at
+    %p
+      %b Creator email:
+      = @ticket.email
+    %p
+      %b Help desk:
+      = @ticket.help_desk.name
+    %p
+      = @ticket.body
 
-= link_to 'Edit', edit_ticket_path(@ticket)
-\|
-= link_to 'Back', help_desk_tickets_path(@ticket.help_desk)
+    = link_to 'Back to all tickets', help_desk_tickets_path(@ticket.help_desk)
 
-%br
-%br
-%br
-
-%h3 Comments
--@ticket.comments.each do |comment|
-  %p="Comment by #{comment.author} at #{comment.created_at} : #{comment.body}"
-%p ...
-%p ...
-%h5 Add Comment
-%p="(Posting as: #{current_user.email})"
-=form_for @comment do |f|
-  =f.text_area :body
-  =f.hidden_field :ticket_id
-  =f.hidden_field :author, value: current_user.email
+.container.justify-content-center.mt-5
+  %h1.w-75.mx-auto Comments
   %br
-  =f.submit
+
+  -@ticket.comments.each do |comment|
+    .card.w-75.mx-auto.p-3.text-left
+      %p
+        %strong #{comment.author}
+        %br
+        #{comment.created_at.strftime("%l:%M%P, %B %d %Y")}
+      %p
+        #{comment.body}
+    %br
+  .card.w-75.mx-auto.p-3.text-left.mb-3
+
+    %h5 Add Comment
+    %p="Posting as: #{current_user.email}"
+    =form_for @comment, html: {class: 'form-group'} do |f|
+      .field=f.text_area :body
+      =f.hidden_field :ticket_id
+      =f.hidden_field :author, value: current_user.email
+      %br
+      =f.submit
