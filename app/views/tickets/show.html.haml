@@ -39,7 +39,7 @@
     %h5 Add Comment
     %p="Posting as: #{current_user.email}"
     =form_for @comment, html: {class: 'form-group'} do |f|
-      .field=f.text_area :body
+      =f.text_area :body, class: 'form-control'
       =f.hidden_field :ticket_id
       =f.hidden_field :author, value: current_user.email
       %br
