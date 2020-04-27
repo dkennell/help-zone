@@ -20,7 +20,8 @@ gem "font-awesome-rails"
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # gem 'mini_racer', platforms: :ruby
 
-
+# Use webpacker to manage Javascript modules
+gem 'webpacker'
 # Use CoffeeScript for .coffee assets and views
 gem 'coffee-rails', '~> 4.2'
 # Use Haml template engine for rails views
