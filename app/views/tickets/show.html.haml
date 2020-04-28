@@ -21,21 +21,20 @@
 
     = link_to 'Back to all tickets', help_desk_tickets_path(@ticket.help_desk)
 
-.container.justify-content-center.mt-5
+.container.justify-content-center.mt-5{data: {controller: 'ticket'}}
   %h1.w-75.mx-auto Comments
   %br
+  #comments{data: {target: 'ticket.comments'}}
+    -@ticket.comments.each do |comment|
+      .card.w-75.mx-auto.p-3.text-left.mb-4
+        %p
+          %strong #{comment.author}
+          %br
+          #{comment.created_at.strftime("%l:%M%P, %B %d %Y")}
+        %p
+          #{comment.body}
 
-  -@ticket.comments.each do |comment|
-    .card.w-75.mx-auto.p-3.text-left
-      %p
-        %strong #{comment.author}
-        %br
-        #{comment.created_at.strftime("%l:%M%P, %B %d %Y")}
-      %p
-        #{comment.body}
-    %br
   .card.w-75.mx-auto.p-3.text-left.mb-3
-
     %h5 Add Comment
     %p="Posting as: #{current_user.email}"
     =form_for @comment, html: {class: 'form-group'} do |f|
@@ -43,4 +42,4 @@
       =f.hidden_field :ticket_id
       =f.hidden_field :author, value: current_user.email
       %br
-      =f.submit
+      =f.submit nil, {data: {action: 'click->ticket#greet'}}
