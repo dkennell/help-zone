@@ -8,6 +8,7 @@ export default class extends Controller {
     const commentsList = this.commentsTarget
     buildCommentDOMElement(commentsList);
     persistCommentObjectToBackend();
+    window.scrollTo(0,document.body.scrollHeight);
   }
 }
 
