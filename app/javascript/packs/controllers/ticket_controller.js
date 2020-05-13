@@ -1,26 +1,29 @@
 import { Controller } from 'stimulus'
 
 export default class extends Controller {
-  static targets = [ "comments" ]
+  static targets = [ "comments", "email", "body" ]
   greet(event) {
     event.preventDefault();
     console.log("Fucking greeting like a motherfucker", this.element)
     const commentsList = this.commentsTarget
-    buildCommentDOMElement(commentsList);
-    persistCommentObjectToBackend();
+    buildCommentDOMElement(
+      commentsList,
+      this.emailTarget.value,
+      this.bodyTarget.value);
     window.scrollTo(0,document.body.scrollHeight);
+    persistCommentObjectToBackend(this.emailTarget.value, this.bodyTarget.value);
   }
 }
 
-function buildCommentDOMElement(commentsList) {
+function buildCommentDOMElement(commentsList, emailTarget, bodyTarget) {
   console.log('Building DOM Element for comment');
   const element = document.createElement('div');
   element.classList.add('card', 'w-75', 'mx-auto', 'p-3', 'text-left', 'mb-4')
   const authorNameElement = document.createElement('strong');
-  authorNameElement.innerHTML = 'Authory McAuthorface';
+  authorNameElement.innerHTML = emailTarget;
   const lineBreakElement = document.createElement('br');
   const commentBodyElement = document.createElement('p');
-  commentBodyElement.innerHTML = 'Body McBodyFace'
+  commentBodyElement.innerHTML = bodyTarget
   element.appendChild(authorNameElement);
   element.appendChild(lineBreakElement);
   element.appendChild(commentBodyElement);
@@ -28,6 +31,24 @@ function buildCommentDOMElement(commentsList) {
   commentsList.append(element)
 }
 
-function persistCommentObjectToBackend() {
+function persistCommentObjectToBackend(email, body) {
+  const authToken = document.querySelector('#authenticity_token');
+
+  fetch(`/comments`, {
+    method: 'POST',
+    headers: {
+      "Content-Type": "application/json",
+      "Authorization": `Bearer ${authToken}`
+    },
+    body: JSON.stringify(
+      {
+        "comment": {
+          "author": email,
+          "body": body,
+          "ticket_id": 1
+        }
+      }      
+    ) 
+  });
   console.log('Persisting comment object to backend')
 }
