@@ -39,8 +39,8 @@
     %p="Posting as: #{current_user.email}"
     =form_for @comment, html: {class: 'form-group'} do |f|
       =f.text_area :body, {class: 'form-control', data: {target: 'ticket.body'}}
-      =f.hidden_field :ticket_id
+      =f.hidden_field :ticket_id, {data: {target: 'ticket.ticketId'}}
       =f.hidden_field :author, {value: current_user.email, data: {target: 'ticket.email'}}
       %br
       =f.submit nil, {data: {action: 'click->ticket#greet'}}
-#authenticity_token, {data: { value: #{form_authenticity_token}}
+#authenticity_token{data: { value: form_authenticity_token}}

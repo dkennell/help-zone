@@ -1,7 +1,7 @@
 import { Controller } from 'stimulus'
 
 export default class extends Controller {
-  static targets = [ "comments", "email", "body" ]
+  static targets = [ "comments", "email", "body", "ticketId"]
   greet(event) {
     event.preventDefault();
     console.log("Fucking greeting like a motherfucker", this.element)
@@ -11,7 +11,7 @@ export default class extends Controller {
       this.emailTarget.value,
       this.bodyTarget.value);
     window.scrollTo(0,document.body.scrollHeight);
-    persistCommentObjectToBackend(this.emailTarget.value, this.bodyTarget.value);
+    persistCommentObjectToBackend(this.emailTarget.value, this.bodyTarget.value, this.ticketIdTarget.value);
   }
 }
 
@@ -31,21 +31,22 @@ function buildCommentDOMElement(commentsList, emailTarget, bodyTarget) {
   commentsList.append(element)
 }
 
-function persistCommentObjectToBackend(email, body) {
-  const authToken = document.querySelector('#authenticity_token');
-
+function persistCommentObjectToBackend(email, body, ticketId) {
+  debugger
+  const authToken = document.querySelector('#authenticity_token').dataset.value;
+  debugger
   fetch(`/comments`, {
     method: 'POST',
     headers: {
       "Content-Type": "application/json",
-      "Authorization": `Bearer ${authToken}`
+      "X-CSRF-Token": authToken
     },
     body: JSON.stringify(
       {
         "comment": {
           "author": email,
           "body": body,
-          "ticket_id": 1
+          "ticket_id": ticketId
         }
       }      
     ) 

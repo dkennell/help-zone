@@ -56,6 +56,6 @@ class TicketsTest < ApplicationSystemTestCase
     visit ticket_url(@ticket)
     fill_in "comment_body", with: "This is a comment"
     click_on "Create Comment"
-    assert_text "Comment by #{@user.email}"
+    assert_text @user.email
   end
 end
