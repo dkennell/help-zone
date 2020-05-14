@@ -4,7 +4,6 @@ export default class extends Controller {
   static targets = [ "comments", "email", "body", "ticketId"]
   greet(event) {
     event.preventDefault();
-    console.log("Fucking greeting like a motherfucker", this.element)
     const commentsList = this.commentsTarget
     buildCommentDOMElement(
       commentsList,
@@ -16,7 +15,6 @@ export default class extends Controller {
 }
 
 function buildCommentDOMElement(commentsList, emailTarget, bodyTarget) {
-  console.log('Building DOM Element for comment');
   const element = document.createElement('div');
   element.classList.add('card', 'w-75', 'mx-auto', 'p-3', 'text-left', 'mb-4')
   const authorNameElement = document.createElement('strong');
@@ -27,14 +25,11 @@ function buildCommentDOMElement(commentsList, emailTarget, bodyTarget) {
   element.appendChild(authorNameElement);
   element.appendChild(lineBreakElement);
   element.appendChild(commentBodyElement);
-  console.log(element);
   commentsList.append(element)
 }
 
 function persistCommentObjectToBackend(email, body, ticketId) {
-  debugger
   const authToken = document.querySelector('#authenticity_token').dataset.value;
-  debugger
   fetch(`/comments`, {
     method: 'POST',
     headers: {
@@ -51,5 +46,4 @@ function persistCommentObjectToBackend(email, body, ticketId) {
       }      
     ) 
   });
-  console.log('Persisting comment object to backend')
 }
