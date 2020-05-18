@@ -2,7 +2,7 @@ import { Controller } from 'stimulus'
 
 export default class extends Controller {
   static targets = [ "comments", "email", "body", "ticketId"]
-  greet(event) {
+  addComment(event) {
     event.preventDefault();
     const commentsList = this.commentsTarget
     buildCommentDOMElement(

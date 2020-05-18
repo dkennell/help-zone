@@ -42,5 +42,5 @@
       =f.hidden_field :ticket_id, {data: {target: 'ticket.ticketId'}}
       =f.hidden_field :author, {value: current_user.email, data: {target: 'ticket.email'}}
       %br
-      =f.submit nil, {data: {action: 'click->ticket#greet'}}
+      =f.submit nil, {data: {action: 'click->ticket#addComment'}}
 #authenticity_token{data: { value: form_authenticity_token}}
