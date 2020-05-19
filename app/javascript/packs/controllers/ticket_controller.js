@@ -4,28 +4,34 @@ export default class extends Controller {
   static targets = [ "comments", "email", "body", "ticketId"]
   addComment(event) {
     event.preventDefault();
-    const commentsList = this.commentsTarget
-    buildCommentDOMElement(
-      commentsList,
-      this.emailTarget.value,
-      this.bodyTarget.value);
+
+    const email = this.emailTarget.value
+    const commentBody = this.bodyTarget.value
+    const ticketId = this.ticketIdTarget.value
+
+    const comment = buildCommentDOMElement(email, commentBody);
+    persistCommentObjectToBackend(email, commentBody, ticketId);
+
+    this.commentsTarget.append(comment)
     window.scrollTo(0,document.body.scrollHeight);
-    persistCommentObjectToBackend(this.emailTarget.value, this.bodyTarget.value, this.ticketIdTarget.value);
   }
 }
 
-function buildCommentDOMElement(commentsList, emailTarget, bodyTarget) {
+function buildCommentDOMElement(email, commentBody) {
   const element = document.createElement('div');
   element.classList.add('card', 'w-75', 'mx-auto', 'p-3', 'text-left', 'mb-4')
+
   const authorNameElement = document.createElement('strong');
-  authorNameElement.innerHTML = emailTarget;
   const lineBreakElement = document.createElement('br');
   const commentBodyElement = document.createElement('p');
-  commentBodyElement.innerHTML = bodyTarget
+  authorNameElement.innerHTML = email;
+  commentBodyElement.innerHTML = commentBody
+
   element.appendChild(authorNameElement);
   element.appendChild(lineBreakElement);
   element.appendChild(commentBodyElement);
-  commentsList.append(element)
+
+  return element
 }
 
 function persistCommentObjectToBackend(email, body, ticketId) {
