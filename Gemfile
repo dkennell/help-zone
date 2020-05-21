@@ -23,7 +23,7 @@ gem "font-awesome-rails"
 # Use webpacker to manage Javascript modules
 gem 'webpacker'
 # Use CoffeeScript for .coffee assets and views
-gem 'coffee-rails', '~> 4.2'
+gem 'coffee-rails', '~> 5.0'
 # Use Haml template engine for rails views
 gem 'haml'
 gem 'haml-rails'
