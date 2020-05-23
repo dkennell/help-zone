@@ -1,4 +1,5 @@
 import { Controller } from 'stimulus'
+import moment from 'moment';
 
 export default class extends Controller {
   static targets = [ "comments", "email", "body", "ticketId"]
@@ -22,12 +23,15 @@ function buildCommentDOMElement(email, commentBody) {
   element.classList.add('card', 'w-75', 'mx-auto', 'p-3', 'text-left', 'mb-4')
 
   const authorNameElement = document.createElement('strong');
+  const dateElement = document.createElement('p');
   const lineBreakElement = document.createElement('br');
   const commentBodyElement = document.createElement('p');
   authorNameElement.innerHTML = email;
+  dateElement.innerHTML = moment().format('h:mma, MMMM D YYYY');
   commentBodyElement.innerHTML = commentBody
 
   element.appendChild(authorNameElement);
+  element.appendChild(dateElement);
   element.appendChild(lineBreakElement);
   element.appendChild(commentBodyElement);
 
