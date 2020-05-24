@@ -9,7 +9,7 @@
       = @ticket.title
     %p
       %b Created at:
-      = @ticket.created_at
+      = @ticket.created_at.localtime
     %p
       %b Creator email:
       = @ticket.email
@@ -30,7 +30,7 @@
         %p
           %strong #{comment.author}
           %br
-          #{comment.created_at.strftime("%l:%M%P, %B %d %Y")}
+          #{comment.created_at.localtime.strftime("%l:%M%P, %B %d %Y")}
         %p
           #{comment.body}
 
