@@ -24,7 +24,6 @@ function buildCommentDOMElement(email, commentBody) {
 
   const authorNameElement = document.createElement('strong');
   const dateElement = document.createElement('p');
-  const lineBreakElement = document.createElement('br');
   const commentBodyElement = document.createElement('p');
   authorNameElement.innerHTML = email;
   dateElement.innerHTML = moment().format('h:mma, MMMM D YYYY');
@@ -32,7 +31,6 @@ function buildCommentDOMElement(email, commentBody) {
 
   element.appendChild(authorNameElement);
   element.appendChild(dateElement);
-  element.appendChild(lineBreakElement);
   element.appendChild(commentBodyElement);
 
   return element
