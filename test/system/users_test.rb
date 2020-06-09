@@ -25,7 +25,6 @@ class UsersTest < ApplicationSystemTestCase
     click_on "Save"
 
     assert_text "User was successfully created"
-    click_on "Back"
   end
 
   test "updating a User" do
@@ -35,7 +34,6 @@ class UsersTest < ApplicationSystemTestCase
     click_on "Save"
 
     assert_text "User was successfully updated"
-    click_on "Back"
   end
 
   test "destroying a User" do
