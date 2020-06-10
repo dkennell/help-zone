@@ -9,6 +9,6 @@
   .field
     = f.label :name
     %br/
-    = f.text_field :name
-  .actions
+    = f.text_field :name, {class: 'form-control'}
+  .actions.mt-3.text-center
     = f.submit 'Save organization'
