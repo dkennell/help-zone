@@ -37,7 +37,7 @@ class OrganizationsController < ApplicationController
           current_user.organizations << @organization
           current_user.add_role(:organization_admin, @organization)
         end
-        format.html { redirect_to @organization, notice: 'Organization was successfully created.' }
+        format.html { redirect_to organization_help_desks_path(@organization), notice: 'Organization was successfully created.' }
         format.json { render :show, status: :created, location: @organization }
       else
         format.html { render :new }

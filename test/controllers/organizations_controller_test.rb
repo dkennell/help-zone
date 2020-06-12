@@ -27,7 +27,7 @@ class OrganizationsControllerTest < ActionDispatch::IntegrationTest
         organization: { name: "Newly minted organization" } }
     end
 
-    assert_redirected_to organization_url(Organization.last)
+    assert_redirected_to organization_help_desks_path(Organization.last)
   end
 
   test "should show organization" do
