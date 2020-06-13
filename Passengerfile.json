@@ -1,0 +1,6 @@
+{
+    "environment": "production",
+    "port": 81,
+    "daemonize": true,
+    "user": "ubuntu"
+  }
