@@ -7,11 +7,11 @@ class TicketMailer < ApplicationMailer
   #
 
   #let's rename this reply_to_ticket
-  def ticket_reply(ticket)
+  def send_ticket_comment(comment)
     @greeting = "Hi"
 
     mail subject: "Replying to ticket"
-    mail to: ticket.email
-    mail from: 'davidkennelltest@gmail.com'
+    mail to: comment.ticket.email
+    mail from: 'customer_service@thehelpzoneproject.com'
   end
 end
