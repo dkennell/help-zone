@@ -70,14 +70,17 @@ Rails.application.configure do
 
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.perform_deliveries = true
+  config.action_mailer.default_url_options = { host: "http://helpzoneproject.com" }
   config.action_mailer.smtp_settings = {
-    address: "smtp.gmail.com",
+    enabled: true,
+    address: 'smtp.sendgrid.net',
     port: 587,
-    domain: "gmail.com",
-    user_name: Rails.application.credentials[:gmail_username],
-    password: Rails.application.credentials[:gmail_password],
-    authentication: "plain",
-    enable_starttls_auto: true
+    domain: 'smtp.sendgrid.net',
+    user_name: Rails.application.credentials[:sendgrid_username],
+    password: Rails.application.credentials[:sendgrid_password],
+    authentication: "login",
+    enable_starttls_auto: true,
+    openssl_verify_mode:  "none"
   }
 
   # Enable locale fallbacks for I18n (makes lookups for any locale fall back to
