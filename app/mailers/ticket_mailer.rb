@@ -12,6 +12,6 @@ class TicketMailer < ApplicationMailer
 
     mail subject: "Replying to ticket"
     mail to: comment.ticket.email
-    mail from: 'customer_service@thehelpzoneproject.com'
+    mail from: 'customer_service@helpzoneproject.com'
   end
 end
