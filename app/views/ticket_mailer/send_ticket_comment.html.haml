@@ -1,5 +1,13 @@
-%h1= "Ticket received"
 
 %p
-  This is a courtesy email to notify you that your ticket was received.
-  A support technician will be reaching out to you shortly. Thank you for using HelpZone!
+  Reply from 
+  %strong= @comment.author 
+  %span=":"
+%p= @comment.body
+
+%br
+%p ===================================================================
+%p Please do not alter or remove content below this line when replying
+%p ===================================================================
+
+%p="Ticket ID: <start_id>#{@comment.ticket.id}<end_id>"
