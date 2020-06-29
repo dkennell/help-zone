@@ -1,13 +1,12 @@
+%p ===================================================================
+%p Please do not alter or remove content below this line when replying
+%p ===================================================================
 
 %p
   Reply from 
   %strong= @comment.author 
   %span=":"
-%p= @comment.body
+%p= @comment.text_part.body.raw_source
 
 %br
-%p ===================================================================
-%p Please do not alter or remove content below this line when replying
-%p ===================================================================
-
 %p="Ticket ID: <start_id>#{@comment.ticket.id}<end_id>"
