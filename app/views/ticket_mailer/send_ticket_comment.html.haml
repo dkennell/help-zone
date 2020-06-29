@@ -1,12 +1,22 @@
-%p ===================================================================
-%p Please do not alter or remove content below this line when replying
-%p ===================================================================
+%p ===== Please do not alter or remove content below this line when replying =====
 
 %p
   Reply from 
   %strong= @comment.author 
   %span=":"
 %p= @comment.body
+
+%br
+%p ===================================================================
+%p Previous comments
+%p ===================================================================
+-@comment.ticket.comments.each do |comment|
+  %p
+    %strong= comment.author 
+    %span=":"
+  %p= comment.body
+  %br
+%p -------------------------------------------------------------------
 
 %br
 %p="Ticket ID: <start_id>#{@comment.ticket.id}<end_id>"
