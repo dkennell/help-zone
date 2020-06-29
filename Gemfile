@@ -53,6 +53,7 @@ gem 'sendgrid-ruby'
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.3', require: false
 
+# Easier parsing for incoming emails w/ date/author information added to the body
 gem 'email_reply_parser', '~> 0.5.8'
 
 group :development, :test do
