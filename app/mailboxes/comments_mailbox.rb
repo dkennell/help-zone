@@ -1,6 +1,21 @@
 class CommentsMailbox < ApplicationMailbox
   def process
     ticket_id = get_ticket_id(body: mail.text_part.decoded)
+    if ticket_id
+      build_comment_from_email(mail, ticket_id)
+    else
+      open_new_ticket(mail)
+    end
+  end
+
+  def get_ticket_id(body: "")
+    start_index = body.index('<start_id>') + 10
+    end_index = body.index('<end_id>') - 1
+    ticket_id_string = body[start_index..end_index]
+    return ticket_id_string.to_i
+  end
+
+  def build_comment_from_email(mail, ticket_id)
     comment_body = EmailReplyParser.parse_reply(mail.text_part.decoded)
     Comment.create(
       body: comment_body,
@@ -9,11 +24,18 @@ class CommentsMailbox < ApplicationMailbox
     )
   end
 
-  def get_ticket_id(body: "")
-    start_index = body.index('<start_id>') + 10
-    end_index = body.index('<end_id>') - 1
-    ticket_id_string = body[start_index..end_index]
-    return ticket_id_string.to_i
+  def open_new_ticket(mail)
+    destination_email_address = mail.to[0]
+    sender_email_address = mail.from[0]
+    email_subject = mail.subject
+    destination_email_user = destination_email_address.split('@').first
+    help_desk = HelpDesk.find_by(name: destination_email_user)
+    ticket = HelpDesk.tickets.build(
+      email: sender_email_address,
+      title: email_subject,
+      body: EmailReplyParser.parse_reply(mail.text_part.decoded)
+    )
+    ticket.save
   end
 
   # Incoming emails are expected to contain a ticket ID
