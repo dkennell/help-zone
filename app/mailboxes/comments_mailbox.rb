@@ -9,8 +9,12 @@ class CommentsMailbox < ApplicationMailbox
   end
 
   def get_ticket_id(body: "")
-    start_index = body.index('<start_id>') + 10
-    end_index = body.index('<end_id>') - 1
+    id_opening_tag = body.index('<start_id>')
+    id_closing_tag = body.index('<end_id>')
+    return nil if [id_opening_tag, id_closing_tag].include?(nil)
+    
+    start_index = id_opening_tag + 10
+    end_index = id_closing_tag - 1
     ticket_id_string = body[start_index..end_index]
     return ticket_id_string.to_i
   end
