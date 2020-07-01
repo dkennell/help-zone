@@ -4,8 +4,8 @@ class TicketsController < ApplicationController
   # GET /tickets
   # GET /tickets.json
   def index
-    @tickets = Ticket.all
     @help_desk = HelpDesk.find(params[:help_desk_id])
+    @tickets = @help_desk.tickets
   end
 
   # GET /tickets/1
