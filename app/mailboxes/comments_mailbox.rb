@@ -34,7 +34,7 @@ class CommentsMailbox < ApplicationMailbox
     email_subject = mail.subject
     destination_email_user = destination_email_address.split('@').first
     help_desk = HelpDesk.find_by(name: destination_email_user)
-    ticket = HelpDesk.tickets.build(
+    ticket = help_desk.tickets.build(
       email: sender_email_address,
       title: email_subject,
       body: EmailReplyParser.parse_reply(mail.text_part.decoded)
