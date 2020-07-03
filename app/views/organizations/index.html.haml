@@ -18,7 +18,7 @@
           %tr
             %td= link_to organization.name, organization_help_desks_path(organization), class: "text-secondary"
             %td.text-center= 'Edit'
-            %td.text-center= 0
+            %td.text-center= organization.tickets.count
             %td.text-center= link_to fa_icon('edit'),
               edit_organization_path(organization),
               class: 'text-dark',
