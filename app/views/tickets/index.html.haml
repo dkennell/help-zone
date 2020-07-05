@@ -1,4 +1,8 @@
 .container.d-flex.justify-content-center
+  .w-50.text-left
+    %a{ href: organization_help_desks_path(@help_desk.organization)}
+      .btn.btn-secondary.mb-3 Back to all helpdesks
+.container.d-flex.justify-content-center
   %h3.mb-4.text-info#page-heading Tickets for help desk: #{@help_desk.name}
 .container.d-flex.justify-content-center
   .card.w-50.p-3.text-left
