@@ -15,6 +15,7 @@ export default class extends Controller {
 
     this.commentsTarget.append(comment);
     window.scrollTo(0, document.body.scrollHeight);
+    this.bodyTarget.value = "";
   }
 }
 
