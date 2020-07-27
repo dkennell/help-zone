@@ -8,7 +8,7 @@
 
   .field
     = f.label :name
-    = f.text_area :name
+    = f.text_area :name, {class: 'form-control'}
   .field= f.hidden_field(:organization_id, value: @help_desk.organization_id)
-  .actions
+  .actions.mt-3.text-center
     = f.submit 'Save'

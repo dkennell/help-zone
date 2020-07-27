@@ -1,5 +1,8 @@
-%h1 New help_desk
+.container.d-flex.align-items-center.justify-content-center
+  .card.w-50
+    .align-items-center.p-3
+      %h1.text-center New help_desk
 
-= render 'form'
+      = render 'form'
 
-= link_to 'Back', organization_help_desks_path(@organization)
+      = link_to 'Back', organization_help_desks_path(@organization)
