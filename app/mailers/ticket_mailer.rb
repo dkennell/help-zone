@@ -8,7 +8,6 @@ class TicketMailer < ApplicationMailer
 
   #let's rename this reply_to_ticket
   def send_ticket_comment(comment)
-    @greeting = "Hi"
     @comment = comment
     mail subject: "Replying to ticket"
     mail to: comment.ticket.email
