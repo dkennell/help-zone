@@ -31,7 +31,7 @@ class HelpDesksController < ApplicationController
     @help_desk = HelpDesk.new(help_desk_params)
     respond_to do |format|
       if @help_desk.save
-        format.html { redirect_to help_desk_url(@help_desk), notice: 'Help desk was successfully created.' }
+        format.html { redirect_to help_desk_tickets_url(@help_desk), notice: 'Help desk was successfully created.' }
         format.json { render :show, status: :created, location: @help_desk }
       else
         format.html { render :new }
