@@ -2,7 +2,7 @@
   "name": "help-zone",
   "private": true,
   "dependencies": {
-    "@rails/webpacker": "5.1.1",
+    "@rails/webpacker": "5.3.0",
     "stimulus": "^1.1.1",
     "moment": "2.27.0"
   },
